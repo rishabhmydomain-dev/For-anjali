@@ -7,8 +7,8 @@
 
 <script>
 // PASSWORD LOCK
-let password = "anjali"; // CHANGE THIS
-let userPass = prompt("kiddo❤️");
+let password = "anjali"; 
+let userPass = prompt("my bachi ❤️");
 
 if(userPass !== password){
     document.write("<h1 style='color:white;text-align:center;margin-top:20%'>Access Denied 💔</h1>");
@@ -23,6 +23,7 @@ body {
     font-family: Arial;
     overflow: hidden;
 }
+
 canvas { position: fixed; }
 
 .center {
@@ -32,22 +33,16 @@ canvas { position: fixed; }
     text-align: center;
 }
 
-.section { display: none; }
-
 button {
     padding: 12px 25px;
     border-radius: 25px;
     border: none;
     background: #ff4b7d;
     color: white;
-}
-
-/* hearts */
-.heart {
-    position: absolute;
-    font-size: 25px;
     cursor: pointer;
 }
+
+#final { display: none; }
 </style>
 </head>
 
@@ -55,15 +50,13 @@ button {
 
 <canvas id="stars"></canvas>
 
-<div class="center" id="countdown">Waiting for 12:00...</div>
-
-<div class="center section" id="main">
+<div class="center" id="main">
     <h1>Happy Birthday Anjali ❤️</h1>
     <p id="line"></p>
-    <button onclick="nextLine()">Next</button>
+    <button onclick="showFinal()">Next</button>
 </div>
 
-<div class="center section" id="final">
+<div class="center" id="final">
     <p>
         I won’t make this complicated.  
         I just want to say thank you.  
@@ -82,25 +75,10 @@ button {
 </div>
 
 <script>
-// COUNTDOWN
-function updateCountdown(){
-    let now=new Date();
-    let t=new Date(); t.setHours(24,0,0,0);
-    let d=t-now;
-
-    if(d<=0){
-        document.getElementById("countdown").style.display="none";
-        document.getElementById("main").style.display="block";
-        typeLine();
-        return;
-    }
-    document.getElementById("countdown").innerHTML=Math.floor(d/1000)+"s";
-}
-setInterval(updateCountdown,1000);
-
-// STORY
+// TYPEWRITER
 let text="Maybe I was late understanding you… but never wrong about you.";
 let i=0;
+
 function typeLine(){
     if(i<text.length){
         document.getElementById("line").innerHTML+=text[i];
@@ -108,13 +86,15 @@ function typeLine(){
         setTimeout(typeLine,40);
     }
 }
+typeLine();
 
-function nextLine(){
+// BUTTON
+function showFinal(){
     document.getElementById("main").style.display="none";
     document.getElementById("final").style.display="block";
 }
 
-// STARS + NAME
+// STARS
 let c=document.getElementById("stars");
 let ctx=c.getContext("2d");
 c.width=innerWidth; c.height=innerHeight;
@@ -134,7 +114,6 @@ function draw(){
         if(s.y>c.height) s.y=0;
     });
 
-    // NAME
     ctx.font="40px Arial";
     ctx.fillStyle="rgba(255,75,125,0.8)";
     ctx.textAlign="center";
@@ -146,4 +125,4 @@ draw();
 </script>
 
 </body>
-  </html>
+</html>
