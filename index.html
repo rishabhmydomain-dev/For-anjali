@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anjali ❤️</title>
+
+<script>
+// PASSWORD LOCK
+let password = "anjali"; // CHANGE THIS
+let userPass = prompt("kiddo❤️");
+
+if(userPass !== password){
+    document.write("<h1 style='color:white;text-align:center;margin-top:20%'>Access Denied 💔</h1>");
+}
+</script>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+    overflow: hidden;
+}
+canvas { position: fixed; }
+
+.center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.section { display: none; }
+
+button {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background: #ff4b7d;
+    color: white;
+}
+
+/* hearts */
+.heart {
+    position: absolute;
+    font-size: 25px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="center" id="countdown">Waiting for 12:00...</div>
+
+<div class="center section" id="main">
+    <h1>Happy Birthday Anjali ❤️</h1>
+    <p id="line"></p>
+    <button onclick="nextLine()">Next</button>
+</div>
+
+<div class="center section" id="final">
+    <p>
+        I won’t make this complicated.  
+        I just want to say thank you.  
+
+        <br><br>
+        For liking me when I didn’t understand it.  
+        For being real in a way most people aren’t.  
+
+        <br><br>
+        I don’t expect anything from you…  
+        just wanted you to know your value.  
+
+        <br><br>
+        Happy Birthday, Anjali ❤️
+    </p>
+</div>
+
+<script>
+// COUNTDOWN
+function updateCountdown(){
+    let now=new Date();
+    let t=new Date(); t.setHours(24,0,0,0);
+    let d=t-now;
+
+    if(d<=0){
+        document.getElementById("countdown").style.display="none";
+        document.getElementById("main").style.display="block";
+        typeLine();
+        return;
+    }
+    document.getElementById("countdown").innerHTML=Math.floor(d/1000)+"s";
+}
+setInterval(updateCountdown,1000);
+
+// STORY
+let text="Maybe I was late understanding you… but never wrong about you.";
+let i=0;
+function typeLine(){
+    if(i<text.length){
+        document.getElementById("line").innerHTML+=text[i];
+        i++;
+        setTimeout(typeLine,40);
+    }
+}
+
+function nextLine(){
+    document.getElementById("main").style.display="none";
+    document.getElementById("final").style.display="block";
+}
+
+// STARS + NAME
+let c=document.getElementById("stars");
+let ctx=c.getContext("2d");
+c.width=innerWidth; c.height=innerHeight;
+
+let stars=[];
+for(let i=0;i<100;i++){
+    stars.push({x:Math.random()*c.width,y:Math.random()*c.height});
+}
+
+function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle="white";
+
+    stars.forEach(s=>{
+        ctx.fillRect(s.x,s.y,2,2);
+        s.y+=0.5;
+        if(s.y>c.height) s.y=0;
+    });
+
+    // NAME
+    ctx.font="40px Arial";
+    ctx.fillStyle="rgba(255,75,125,0.8)";
+    ctx.textAlign="center";
+    ctx.fillText("Anjali ✨",c.width/2,c.height/2);
+
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+  </html>
